@@ -27,3 +27,23 @@ for i in range(num):
         avg = round(sum1/k)
        
     print(avg)
+    
+    ''' 3rd Q '''
+    
+def vandermonde_matrix(array, p, ascending=False):
+if not ascending:
+    return [[element**(p-i-1) for i in range(p)] for element in array]
+else:
+    return [[element**i for i in range(p)] for element in array]
+
+
+array = [1, 2, 3]
+
+p = 3
+
+result = vandermonde_matrix(array, p)
+print(result)
+
+result = vandermonde_matrix(array, p, True)
+print(result)
+
