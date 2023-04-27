@@ -1,0 +1,32 @@
+#SHELL SCRIPT
+
+#Arithmetic operations 
+
+x=9
+y=7
+
+expr $x + $y
+expr $x - $y
+expr $x * $y
+expr $x / $y
+expr $x % $y
+
+let z=10+10
+echo $z
+
+echo $((10*10))
+
+factor (gives prime factors of the given number)
+
+vi dispmsg
+
+press i
+
+echo "Hello"
+echo "I am Rudrani"
+
+press esc and then :wq
+chmod 700 or 774 dispmsg
+./dispmsg
+
+
