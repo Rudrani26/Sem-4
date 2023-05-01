@@ -1,56 +1,56 @@
-.MODEL SMALL
-.STACK 100H
+.model small
+.stack 100h
 
-.DATA 										; The string to be printed
-STRING DB 'madam', '$'
-STRING1 DB 'String is palindrome', '$'
-STRING2 DB 'String is not palindrome', '$'
+.data
+string db 'madam', '$'
+string1 db 'String is a Palindrome', '$'
+string2 db 'String is not a Palindrome', '$'
 
-.CODE
-MOV AX, @DATA
-MOV DS, AX										; check if the string is palindrome or not
+.code
+mov ax, @data
+mov ds, ax
 
-CALL Palindrome									; interrupt to exit
-MOV AH, 4CH
-INT 21H
-ENDP
+call palindrome
+mov ah, 4ch
+int 21h
+endp
 
-Palindrome PROC									; load the starting address of the string
-MOV SI, OFFSET STRING								; traverse to the end of the string
+palindrome proc
+mov SI, offset string
 
-LOOP1 :
-MOV AX, [SI]
-CMP AL, '$'
-JE LABEL1
-INC SI
-JMP LOOP1										; load the starting address of the string
+loop1:
+mov ax, [SI]
+cmp al, '$'
+je label1
+inc SI
+jmp loop1
 
-LABEL1 :
-MOV DI, OFFSET STRING
-DEC SI										; check if the string is palindrome or not
+label1:
+mov DI, offset string
+dec SI
 
-LOOP2 :
-CMP SI, DI
-JL OUTPUT1
-MOV AX, [SI]
-MOV BX, [DI]
-CMP AL, BL
-JNE OUTPUT2
-DEC SI
-INC DI
-JMP LOOP2
+loop2:
+cmp SI, DI
+jl output1
+mov ax, [SI]
+mov bx, [DI]
+cmp al, bl
+jne output2
+inc DI
+dec SI
+jmp loop2
 
-OUTPUT1:										; load address of the string
-LEA DX,STRING1									; output the string loaded in dx
-MOV AH, 09H
-INT 21H
-RET
+output1:
+lea dx, string1
+mov ah, 09h
+int 21h
+ret
 
-OUTPUT2:										;load address of the string
-LEA DX,STRING2									; output the string loaded in dx
-MOV AH,09H
-INT 21H
+output2:
+lea dx, string2
+mov ah, 09h
+int 21h
+ret
 
-RET
-Palindrome ENDP
-END
+palindrome endp
+end
